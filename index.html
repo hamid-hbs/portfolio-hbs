@@ -433,6 +433,10 @@
             background: linear-gradient(135deg, #f24e1e, #a259ff);
         }
 
+        .skill-icon.docker {
+            background: linear-gradient(135deg, #2496ed, #0d3b66);
+        }
+
         .skill-header h3 {
             font-size: 1.5rem;
             color: var(--dark);
@@ -462,28 +466,32 @@
             transition: width 1.5s ease-in-out;
         }
 
-        .skill-category:nth-child(1) .level-progress {
+        .level-progress.vue-progress {
             background: linear-gradient(90deg,  #42B883,#35495E,#1F2937);
         }
 
-        .skill-category:nth-child(2) .level-progress {
+        .level-progress.next-progress {
             background: linear-gradient(90deg, #000000, #666666);
         }
 
-        .skill-category:nth-child(3) .level-progress {
+        .level-progress.laravel-progress {
             background: linear-gradient(90deg, #FF2D20,#CC1F1A,#6C757D);
         }
 
-        .skill-category:nth-child(4) .level-progress {
+        .level-progress.firebase-progress {
             background: linear-gradient(90deg, #ffca28, #f57c00);
         }
 
-        .skill-category:nth-child(5) .level-progress {
+        .level-progress.mysql-progress {
             background: linear-gradient(90deg, #00758f, var(--primary));
         }
 
-        .skill-category:nth-child(6) .level-progress {
+        .level-progress.figma-progress {
             background: linear-gradient(90deg, #f24e1e, #a259ff);
+        }
+
+        .level-progress.docker-progress {
+            background: linear-gradient(90deg, #2496ed, #0d3b66);
         }
 
         .level-text {
@@ -636,6 +644,39 @@
 
         .project-card:hover {
             transform: translateY(-10px);
+        }
+
+        .project-card:nth-child(n+7) {
+            display: none;
+        }
+
+        .projects-grid.expanded .project-card:nth-child(n+7) {
+            display: block;
+        }
+
+        .projects-more {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn-more {
+            background: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-more i {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-more:hover i.fa-chevron-up {
+            transform: translateY(-2px);
+        }
+
+        .btn-more:hover i.fa-chevron-down {
+            transform: translateY(2px);
         }
 
         .project-image {
@@ -931,20 +972,44 @@
             background: var(--light);
         }
 
+        .contact-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: -30px auto 60px;
+            line-height: 1.6;
+        }
+
         .contact-content {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1.3fr 0.7fr;
             gap: 30px;
-            align-items: start;
-            max-width: 900px;
+            align-items: stretch;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        .contact-info {
+        .contact-info,
+        .contact-side {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            padding: 45px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before,
+        .contact-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
         .contact-info h3 {
@@ -953,7 +1018,7 @@
             margin-bottom: 20px;
         }
 
-        .contact-info p {
+        .contact-info .contact-intro {
             font-size: 1.1rem;
             color: var(--gray);
             margin-bottom: 40px;
@@ -961,6 +1026,8 @@
         }
 
         .contact-items {
+            display: grid;
+            gap: 20px;
             margin-bottom: 40px;
         }
 
@@ -968,29 +1035,83 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-bottom: 25px;
+            padding: 18px 20px;
+            background: var(--light);
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
         }
 
-        .contact-item i {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border-radius: 50%;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1);
         }
 
         .contact-item h4 {
             color: var(--dark);
             margin-bottom: 5px;
+            font-size: 1.1rem;
         }
 
         .contact-item p {
             color: var(--gray);
             margin: 0;
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .contact-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .contact-side-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .contact-note {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 0 25px;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         .social-links {
@@ -1013,7 +1134,14 @@
 
         .social-link:hover {
             background: var(--accent);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .social-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 15px;
         }
 
         .contact-form {
@@ -1051,63 +1179,7 @@
             min-height: 120px;
         }
 
-        /* Styles pour les icônes de contact */
-.contact-icon {
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 25px;
-}
-
-.contact-item h4 {
-    color: var(--dark);
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-}
-
-.contact-item p {
-    color: var(--gray);
-    margin: 0;
-}
-
-.contact-item a {
-    color: var(--primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.contact-item a:hover {
-    color: var(--accent);
-}
-
-.contact-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.contact-note {
-    margin-top: 20px;
-    margin-bottom: 0;
-    font-size: 0.98rem;
-    color: var(--gray);
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
+        /* ===== RESPONSIVE DESIGN ===== */
 
 /* Code Window Responsive */
 .code-window {
@@ -1426,32 +1498,49 @@
 @media (max-width: 968px) {
     .contact-content {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
     }
     
-    .contact-info {
+    .contact-info,
+    .contact-side {
         padding: 30px;
     }
 }
 
 @media (max-width: 480px) {
-    .contact-info {
-        padding: 20px;
+    .contact-subtitle {
+        font-size: 1rem;
+        margin: -30px auto 40px;
+        padding: 0 10px;
+    }
+
+    .contact-info,
+    .contact-side {
+        padding: 22px;
     }
     
     .contact-item {
         flex-direction: column;
         text-align: center;
-        gap: 10px;
+        gap: 12px;
     }
     
-    .contact-icon {
-        width: 40px;
-        height: 40px;
+    .contact-actions {
+        justify-content: center;
     }
-    
-    .contact-icon i {
-        font-size: 1rem;
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .social-label {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-section ul.footer-links {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -1468,6 +1557,10 @@
         grid-template-columns: 1fr;
         gap: 30px;
         text-align: center;
+    }
+
+    .footer-section ul.footer-links {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .social-links {
@@ -1571,7 +1664,7 @@
 
         .footer-content {
             display: grid;
-            grid-template-columns: 1.6fr 1fr 1.4fr;
+            grid-template-columns: 1.4fr 2.6fr;
             gap: 40px;
             margin-bottom: 40px;
         }
@@ -1601,8 +1694,25 @@
             list-style: none;
         }
 
+        .footer-section.footer-links-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+        }
+
+        .footer-section ul.footer-links {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            flex: 1;
+        }
+
         .footer-section ul li {
             margin-bottom: 10px;
+        }
+
+        .footer-section ul.footer-links li {
+            margin-bottom: 0;
         }
 
         .footer-section ul li a {
@@ -1939,7 +2049,7 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    Hamid.hbs<span>Dev</span>
+                    hbs.<span>Dev</span>
                 </div>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home" onclick="scrollToSection('home')">Accueil</a></li>
@@ -1975,7 +2085,7 @@
                         et performantes.
                     </p>
                     <div class="hero-buttons">
-                        <a href="MonCV.pdf" class="btn btn-secondary" download><i class="fas fa-download"></i> Télécharger CV</a>
+                        <a href="MonCV.png" class="btn btn-secondary" download><i class="fas fa-download"></i> Télécharger CV</a>
                         <a href="#contact" class="btn btn-accent">Me contacter</a>
                     </div>
                 </div>
@@ -1991,8 +2101,8 @@
                         <div class="code-content">
                             <pre><code>// Mon stack technique
 const skills = {
-  frontend: ['Vue.js','Next.js', 'JavaScript', 'HTML/CSS']
-  backend: ['Laravel', 'PHP', 'MySQL']
+  frontend: ['Vue.js', 'Bootstrap', 'JavaScript', 'HTML/CSS']
+  backend: ['Laravel', 'PHP', 'MySQL' , 'API']
 };
 
 // Créons quelque chose 
@@ -2014,27 +2124,13 @@ const skills = {
                     <h3>Développeur Fullstack passionné</h3>
                     <p>
                         Je suis un développeur fullstack spécialisé dans les technologies Vue.js et Laravel. 
-                        Avec plus de 03 années d'expérience, j'ai travaillé sur divers projets allant des 
+                        J'ai travaillé sur divers projets allant des 
                         applications web complexes aux sites vitrines.
                     </p>
                     <p>
                         Mon approche combine une expertise technique solide avec une attention particulière 
                         aux besoins utilisateurs et aux bonnes pratiques de développement.
                     </p>
-                    <div class="about-stats">
-                        <!--<div class="stat">
-                            <h4>3+</h4>
-                            <p>Projets réalisés</p>
-                        </div>-->
-                        <div class="stat">
-                            <h4>3+</h4>
-                            <p>Années d'expérience</p>
-                        </div>
-                       <!-- <div class="stat">
-                            <h4>30+</h4>
-                            <p>Clients satisfaits</p>
-                        </div>-->
-                    </div>
                 </div>
                 <div class="about-image">
                     <div class="image-placeholder">
@@ -2062,7 +2158,7 @@ const skills = {
                 </div>
                 <div class="skill-level">
                     <div class="level-bar">
-                        <div class="level-progress" style="width: 80%"></div>
+                        <div class="level-progress vue-progress" style="width: 90%"></div>
                     </div>
                     <span class="level-text">Avancé</span>
                 </div>
@@ -2077,7 +2173,7 @@ const skills = {
                 </div>
             </div>
 
-            <!-- Next.js -->
+            <!-- Next.js 
             <div class="skill-category">
                 <div class="skill-header">
                     <div class="skill-icon next">
@@ -2100,7 +2196,7 @@ const skills = {
                     <span class="skill-tag">API Routes</span>
                     <span class="skill-tag">Optimization</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Laravel -->
             <div class="skill-category">
@@ -2112,9 +2208,9 @@ const skills = {
                 </div>
                 <div class="skill-level">
                     <div class="level-bar">
-                        <div class="level-progress" style="width: 70%"></div>
+                        <div class="level-progress laravel-progress" style="width: 90%"></div>
                     </div>
-                    <span class="level-text">Intermédiaire</span>
+                    <span class="level-text">Avancé</span>
                 </div>
                 <p class="skill-description">
                     API RESTful, architecture MVC, Eloquent ORM et écosystème Laravel.
@@ -2127,30 +2223,6 @@ const skills = {
                 </div>
             </div>
 
-            <!-- Firebase -->
-            <div class="skill-category">
-                <div class="skill-header">
-                    <div class="skill-icon firebase">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <h3>Firebase</h3>
-                </div>
-                <div class="skill-level">
-                    <div class="level-bar">
-                        <div class="level-progress" style="width: 70%"></div>
-                    </div>
-                    <span class="level-text">Intermédiaire</span>
-                </div>
-                <p class="skill-description">
-                    Authentification, Firestore, Storage et déploiement d'applications.
-                </p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Firestore</span>
-                    <span class="skill-tag">Auth</span>
-                    <span class="skill-tag">Hosting</span>
-                    <span class="skill-tag">Storage</span>
-                </div>
-            </div>
 
             <!-- MySQL -->
             <div class="skill-category">
@@ -2162,7 +2234,7 @@ const skills = {
                 </div>
                 <div class="skill-level">
                     <div class="level-bar">
-                        <div class="level-progress" style="width: 80%"></div>
+                        <div class="level-progress mysql-progress" style="width: 80%"></div>
                     </div>
                     <span class="level-text">Avancé</span>
                 </div>
@@ -2177,7 +2249,57 @@ const skills = {
                 </div>
             </div>
 
-            <!-- Figma -->
+            <!-- Firebase -->
+            <div class="skill-category">
+                <div class="skill-header">
+                    <div class="skill-icon firebase">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Firebase</h3>
+                </div>
+                <div class="skill-level">
+                    <div class="level-bar">
+                        <div class="level-progress firebase-progress" style="width: 70%"></div>
+                    </div>
+                    <span class="level-text">Intermédiaire</span>
+                </div>
+                <p class="skill-description">
+                    Authentification, Firestore, Storage et déploiement d'applications.
+                </p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Firestore</span>
+                    <span class="skill-tag">Auth</span>
+                    <span class="skill-tag">Hosting</span>
+                    <span class="skill-tag">Storage</span>
+                </div>
+            </div>
+
+            <!-- Docker -->
+            <div class="skill-category">
+                <div class="skill-header">
+                    <div class="skill-icon docker">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h3>Docker</h3>
+                </div>
+                <div class="skill-level">
+                    <div class="level-bar">
+                        <div class="level-progress docker-progress" style="width: 70%"></div>
+                    </div>
+                    <span class="level-text">Intermédiaire</span>
+                </div>
+                <p class="skill-description">
+                    Conteneurisation d'applications, gestion des images et orchestrations multi-services.
+                </p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Conteneurisation</span>
+                    <span class="skill-tag">Docker Compose</span>
+                    <span class="skill-tag">Images</span>
+                    <span class="skill-tag">Volumes</span>
+                </div>
+            </div>
+
+            <!-- Figma
             <div class="skill-category">
                 <div class="skill-header">
                     <div class="skill-icon figma">
@@ -2201,7 +2323,7 @@ const skills = {
                     <span class="skill-tag">Collaboration</span>
                 </div>
             </div>
-        </div>
+        </div>  -->
 
         <!-- Compétences supplémentaires -->
         <div class="additional-skills">
@@ -2290,6 +2412,7 @@ const skills = {
                         <p>Site web dédié à la préservation et à la promotion de la culture béninoise.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">Blade</span>
                         </div>
                     </div>
                 </div>
@@ -2392,6 +2515,106 @@ const skills = {
                         </div>
                     </div>
                 </div>
+
+                <!-- Project 7 -->
+                <div class="project-card" data-category="docker">
+                    <div class="project-image">
+                        <img src="fonciersecure.png" alt="FoncierSecure">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/hamid-hbs/foncier_secure0.git" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>FoncierSecure</h3>
+                        <p>Application de gestion des transactions foncières basée sur la technologie de la blockchain.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="project-card" data-category="docker">
+                    <div class="project-image">
+                        <img src="proxycard.png" alt="ProxyCard">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/hamid-hbs/proxycard_front.git" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>ProxyCard</h3>
+                        <p>Application de gestion des cartes de visite électroniques.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="project-card" data-category="docker">
+                    <div class="project-image">
+                        <img src="tolataste.png" alt="TolaTaste">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/hamid-hbs/tolataste_front.git" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>TolaTaste</h3>
+                        <p>Application web de gestion de restaurant.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="project-card" data-category="docker">
+                    <div class="project-image">
+                        <img src="ticketpro.png" alt="Ticket Pro">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/hamid-hbs/ticket_pro.git" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Ticket Pro</h3>
+                        <p>Application de gestion de tickets avec QRcode pour les événements.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+            <div class="projects-more">
+                <button class="btn btn-more" id="showMoreProjects" onclick="toggleProjects()">
+                    Voir tous les projets <i class="fas fa-chevron-down"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -2550,10 +2773,13 @@ const skills = {
 <section id="contact" class="section contact">
     <div class="container">
         <h2 class="section-title">Contactez-moi</h2>
+        <p class="contact-subtitle">
+            Une question, un projet ou une collaboration ? Parlons-en. Je vous réponds rapidement.
+        </p>
         <div class="contact-content">
             <div class="contact-info">
                 <h3>Travaillons ensemble !</h3>
-                <p>
+                <p class="contact-intro">
                     Vous avez un projet en tête ? N'hésitez pas à me contacter. 
                     Je serai ravi de discuter de vos idées et de vous aider à les concrétiser.
                 </p>
@@ -2593,24 +2819,34 @@ const skills = {
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="contact-actions">
-                    <a href="mailto:hamidbawasacca@gmail.com" class="btn">Envoyer un email</a>
-                    <a href="tel:+2290191863975" class="btn btn-accent">Appeler maintenant</a>
+            <div class="contact-side">
+                <div>
+                    <h3 class="contact-side-title">Disponibilité</h3>
+                    <p class="contact-note">
+                        Disponible pour des missions freelance, collaborations et CDI.
+                        Contactez-moi directement par email ou téléphone.
+                    </p>
+                    <div class="contact-actions">
+                        <a href="mailto:hamidbawasacca@gmail.com" class="btn"><i class="fas fa-envelope"></i> Envoyer un email</a>
+                        <a href="tel:+2290191863975" class="btn btn-accent"><i class="fas fa-phone"></i> Appeler</a>
+                    </div>
                 </div>
 
-                <p class="contact-note">Disponible pour des missions freelance, collaborations et CDI.</p>
-
-                <div class="social-links">
-                    <a href="https://github.com/hamid-hbs" class="social-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/hamid-bawa-sacca-a41716389" class="social-link">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://wa.me/2290191863975" class="social-link">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
+                <div>
+                    <p class="social-label">Retrouvez-moi sur</p>
+                    <div class="social-links">
+                        <a href="https://github.com/hamid-hbs" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/hamid-bawa-sacca-a41716389" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/2290191863975" class="social-link" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2622,14 +2858,13 @@ const skills = {
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Hamid.hbs<span>Dev</span></h3>
-                    <p>Développeur Fullstack spécialisé en Vue.js et Laravel, créant des applications web modernes et performantes.</p>
+                    <h3>hbs.<span>Dev</span></h3>
                     <p>J’accompagne les entreprises et porteurs de projet de l’idée au déploiement.</p>
                 </div>
                 
-                <div class="footer-section">
+                <div class="footer-section footer-links-section">
                     <h4>Liens rapides</h4>
-                    <ul>
+                    <ul class="footer-links">
                         <li><a href="#home">Accueil</a></li>
                         <li><a href="#about">À propos</a></li>
                         <li><a href="#skills">Compétences</a></li>
@@ -2639,32 +2874,10 @@ const skills = {
                     </ul>
                 </div>
 
-                <div class="footer-section">
-                    <h4>Coordonnées</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i>
-                        <a href="mailto:hamidbawasacca@gmail.com">hamidbawasacca@gmail.com</a>
-                        </p>
-
-                        <p><i class="fas fa-phone"></i>
-                        <a href="tel:+2290191863975">+229 01 91 86 39 75</a>
-                        </p>
-
-                        <p><i class="fas fa-location-dot"></i>
-                        Cotonou, Bénin
-                        </p>
-
-                        <div class="social-links">
-                            <a href="https://github.com/hamid-hbs" class="social-link"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/hamid-bawa-sacca-a41716389" class="social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://wa.me/2290191863975" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
-                </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Hamid.hbsDev. Tous droits réservés.</p>
+                <p>&copy; 2026 hbs.Dev. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -2714,7 +2927,7 @@ function toggleMenu() {
         }
 
         // Typing animation
-        const skills = ['Vue.js', 'Laravel', 'Next.js', 'PHP'];
+        const skills = ['Vue.js', 'Laravel', 'Docker', 'MySQL', 'PHP'];
         let currentSkillIndex = 0;
         const typingElement = document.getElementById('typingElement');
 
@@ -2751,6 +2964,15 @@ function toggleMenu() {
                     project.style.display = 'none';
                 }
             });
+        }
+
+        function toggleProjects() {
+            const grid = document.querySelector('.projects-grid');
+            const btn = document.getElementById('showMoreProjects');
+            const expanded = grid.classList.toggle('expanded');
+            btn.innerHTML = expanded
+                ? 'Voir moins <i class="fas fa-chevron-up"></i>'
+                : 'Voir tous les projets <i class="fas fa-chevron-down"></i>';
         }
 
         // Form submission
