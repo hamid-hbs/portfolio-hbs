@@ -1538,36 +1538,6 @@
     }
 }
 
-@media (max-width: 768px) {
-    .footer-section ul.footer-links {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Footer Responsive */
-@media (max-width: 968px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-    }
-
-    .footer-section ul.footer-links {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-}
-
 /* Navigation Responsive */
 @media (max-width: 768px) {
     .hamburger {
@@ -1660,6 +1630,7 @@
             background: var(--dark);
             color: white;
             padding: 60px 0 20px;
+            overflow-x: hidden;
         }
 
         .footer-content {
@@ -1667,6 +1638,10 @@
             grid-template-columns: 1.4fr 2.6fr;
             gap: 40px;
             margin-bottom: 40px;
+        }
+
+        .footer-section {
+            min-width: 0;
         }
 
         .footer-section h3 {
@@ -1703,8 +1678,9 @@
         .footer-section ul.footer-links {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
+            gap: 20px 12px;
             flex: 1;
+            min-width: 0;
         }
 
         .footer-section ul li {
@@ -1719,6 +1695,8 @@
             color: #bdc3c7;
             text-decoration: none;
             transition: color 0.3s;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .footer-section ul li a:hover {
@@ -1759,11 +1737,15 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
             text-align: center;
+            padding-left: 16px;
+            padding-right: 16px;
         }
 
         .footer-bottom p {
             color: #bdc3c7;
             font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
         }
 
         /* Responsive Design */
